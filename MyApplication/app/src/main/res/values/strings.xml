@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="manufacture">MANUFACTURE</string>
+    <string name="example_manuacture">Example Manuacture</string>
+    <string name="dose_1">DOSE 1</string>
+    <string name="test_enxpandable_view">test enxpandable view</string>
+    <string name="dose_2">DOSE 2</string>
+    <string name="dob">DATE OF BIRTH</string>
+</resources>
