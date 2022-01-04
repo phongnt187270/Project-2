@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Covid-19 Vaccination Card</string>
+    <string name="manufacture">MANUFACTURE</string>
+    <string name="example_manuacture">Example Manuacture</string>
+    <string name="dose_1">DOSE 1</string>
+    <string name="test_enxpandable_view">test enxpandable view</string>
+    <string name="dose_2">DOSE 2</string>
+    <string name="dob_title">DATE OF BIRTH</string>
+    <string name="main_card_title">COVID-19 VACCINATION CARD</string>
+    <string name="patient_dob">21-12-2012</string>
+    <string name="patient_name_title">NAME</string>
+    <string name="patient_name">Example Patient</string>
+    <string name="dose_1_date">21-12-2012</string>
+    <string name="dose_2_date">21-12-2012</string>
+    <string-array name="phone_array">
+        <item>Home</item>
+        <item>Work</item>
+        <item>Mobile</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="password_array">
+        <item>Home</item>
+        <item>Work</item>
+        <item>Mobile</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="genders_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="date_array">
+        <item>Home</item>
+        <item>Work</item>
+        <item>Mobile</item>
+        <item>Other</item>
+    </string-array>
+</resources>
