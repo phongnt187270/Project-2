@@ -14,24 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <ImageButton
             android:id="@+id/person_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:clickable="true"
+            android:backgroundTint="@color/white"
+            android:onClick="personal_modify"
             android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_person_24"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/setting_button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="UsingOnClickInXml"
             tools:layout_editor_absoluteY="0dp" />
 
         <ImageButton
             android:id="@+id/setting_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:clickable="true"
+            android:backgroundTint="@color/white"
+            android:onClick="setting"
             android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_settings_24"
             app:layout_constraintEnd_toStartOf="@id/logout_button"
@@ -42,12 +43,13 @@
             android:id="@+id/logout_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
+            android:backgroundTint="@color/white"
+            android:onClick="logout"
             android:scaleType="fitXY"
             android:src="@drawable/ic_baseline_logout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/setting_button"
-             />
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
