@@ -24,6 +24,8 @@ public class LoginForm extends AppCompatActivity {
     private EditText edtPhonenumber;
     private EditText edtPassword;
 
+
+
     List<User> userList;
     private String str_vaccination_info_id;
 
@@ -43,6 +45,8 @@ public class LoginForm extends AppCompatActivity {
 
         userList = new ArrayList<>();
         getListUser();
+
+
     }
 
     public void Login(View view) {
@@ -59,15 +63,15 @@ public class LoginForm extends AppCompatActivity {
 
                 isUser = true;
 
-                Log.v("lul",   user.getVaccinationInfoId());
-
                 if  (user.getVaccinationInfoId() == null){
 
                     str_vaccination_info_id = "None Vaccination card";
 
                 } else {
                     str_vaccination_info_id = user.getVaccinationInfoId();
+
                 }
+
 
                 user_info = user;
                 break;
@@ -108,5 +112,11 @@ public class LoginForm extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 
 }

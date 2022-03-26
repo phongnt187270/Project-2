@@ -67,9 +67,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:inputType="text"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/id_title" />
@@ -165,41 +165,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/role_title" />
 
-            <TextView
-                android:id="@+id/phone_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:text="Phone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/role_input" />
-
-            <EditText
-                android:id="@+id/phone_input"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/text_box"
-                android:ems="10"
-                android:inputType="phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phone_title" />
-
             <Button
                 android:id="@+id/save_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="12dp"
+                android:layout_marginTop="60dp"
                 android:text="Save"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phone_input" />
+                app:layout_constraintTop_toBottomOf="@id/role_input" />
+
+            <TextView
+                android:id="@+id/date_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#FF0E0E"
+                android:visibility="invisible"
+                tools:layout_editor_absoluteX="36dp"
+                tools:layout_editor_absoluteY="316dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

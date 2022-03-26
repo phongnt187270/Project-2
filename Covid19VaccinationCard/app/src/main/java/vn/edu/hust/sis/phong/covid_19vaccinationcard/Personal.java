@@ -3,6 +3,8 @@ package vn.edu.hust.sis.phong.covid_19vaccinationcard;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -27,20 +30,23 @@ public class Personal extends AppCompatActivity {
 
     Button saveButton;
 
+    private TextView date_error;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
 
+        date_error = findViewById(R.id.date_error);
+
         // initializing our views
         nameEdt = findViewById(R.id.name_input);
         idEdt = findViewById(R.id.id_input);
         dateEdt = findViewById(R.id.date_spinner);
+
+
         monthEdt = findViewById(R.id.month_spinner);
         yearEdt = findViewById(R.id.year_spinner);
-//        passEdt = findViewById(R.id.password_input);
-
-
         divisionEdt = findViewById(R.id.division_input);
         roleEdt = findViewById(R.id.role_input);
         phoneEdt = findViewById(R.id.phone_input);
@@ -52,13 +58,25 @@ public class Personal extends AppCompatActivity {
         idEdt.setHint(LoginForm.user_info.getUserId());
         divisionEdt.setHint(LoginForm.user_info.getDivision());
         roleEdt.setHint(LoginForm.user_info.getRole());
-        phoneEdt.setHint(LoginForm.user_info.getPhonenumber());
 
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUser();
+
+                if (nameEdt.getText().toString().equals("") &
+                        divisionEdt.getText().toString().equals("") &
+                        dateEdt.getText().toString().equals("") &
+                        monthEdt.getText().toString().equals("") &
+                        yearEdt.getText().toString().equals("") &
+                        roleEdt.getText().toString().equals("") ){
+                    Toast.makeText(getApplicationContext(), "Missing",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    updateUser();
+                }
+
+
             }
         });
     }
@@ -66,7 +84,6 @@ public class Personal extends AppCompatActivity {
     private void updateUser(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2/laravel_api/public/api/")
-
                 .addConverterFactory(GsonConverterFactory.create())
                 // at last we are building our retrofit builder.
                 .build();
@@ -76,7 +93,20 @@ public class Personal extends AppCompatActivity {
         dobEdt = yearEdt.getText().toString()  + "-" + monthEdt.getText().toString() + "-" + dateEdt.getText().toString();
 
         User user = new User(LoginForm.user_info.getUserId(), LoginForm.user_info.getPhonenumber(), LoginForm.user_info.getPassword(),
-                LoginForm.user_info.getName(), dobEdt, divisionEdt.getText().toString(), roleEdt.getText().toString());
+                nameEdt.getText().toString(), dobEdt, divisionEdt.getText().toString(), roleEdt.getText().toString());
+
+        if (nameEdt.getText().toString().equals(""))
+            user.setName(LoginForm.user_info.getName());
+
+        if (divisionEdt.getText().toString().equals(""))
+            user.setDivision(LoginForm.user_info.getDivision());
+
+        if (roleEdt.getText().toString().equals(""))
+            user.setRole(LoginForm.user_info.getRole());
+
+        checkEditDate();
+
+
 
         Call<User> call = updateUser.modifyUser(LoginForm.user_info.getUserId(), user);
 
@@ -110,6 +140,20 @@ public class Personal extends AppCompatActivity {
         dateEdt.setHint(str[2]);
         monthEdt.setHint(str[1]);
         yearEdt.setHint(str[0]);
+    }
+
+    private void checkEditDate(){
+        String str_dob = LoginForm.user_info.getDob();
+        String[] str = str_dob.split("-");
+
+        if (dateEdt.getText().toString().equals(""))
+            dateEdt.setText(str[2]);
+
+        if (monthEdt.getText().toString().equals(""))
+            monthEdt.setText(str[1]);
+
+        if (yearEdt.getText().toString().equals(""))
+            yearEdt.setText(str[0]);
     }
 
 }

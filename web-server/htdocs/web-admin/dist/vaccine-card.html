@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Tables - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="myForm.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- MDB -->
+
+</head>
+
+<body class="sb-nav-fixed">
+    <div class="background-form"></div>
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="tables.html">G Company</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
+                class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                    aria-describedby="btnNavbarSearch" onkeyup="search(event)" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                        class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                      
+                        <a class="nav-link" href="tables.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link collapsed" href="tables.html" data-bs-toggle="collapse" data-bs-target="#collapseTable" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Tables
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseTable" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="vaccine.html">Vaccine</a>
+                                <a class="nav-link" href="vaccine-card.html">Vaccine Card</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Admin
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Tables</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Vaccination Card Management</li>
+                    </ol>
+                    <button type="button" class="btn btn-primary" id="btnAdd">Add VACC</button>
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Vaccination Card Management
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="col-2">Vaccination Card ID</th>
+                                        <th class="col-2">Vaccine 1 ID</th>
+                                        <th class="col-2">Vaccine 2 ID</th>                                
+                                        <th class="col-2">Modify</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datatablesSimple">
+
+                                </tbody>
+                            </table>
+
+                            <!--action="action_page.php"-->
+                            <form id="formDetail">
+                                <div class="container">
+                                    <div class="header-form">
+                                        <h1>Edit User Info</h1>
+                                        <div class="close-form"><i class="fas fa-window-close"></i></div>
+                                    </div>
+                                    <hr>
+
+                                    <label><b>vaccination_info_id</b></label>
+                                    <input type="text" placeholder="Enter vaccination_info_id" fieldName="vaccination_info_id" required>                                    
+                                    <label><b>vaccination_injection_1</b></label>                                
+                                    <input type="text" placeholder="Enter vaccination_injection_1" fieldName="vaccination_injection_1" required>
+                                    <label><b>vaccination_injection_2</b></label>
+                                    <input type="text" placeholder="Enter vaccination_injection_2" fieldName="vaccination_injection_2" required>
+
+                                    <hr>
+                                    <button class="btn btn-primary save">Save</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+
+        </div>
+
+        <!--Modal-->
+
+        <div id="demo-modal" class="modal">
+            <div class="modal__content">
+                <h1>Xác nhận</h1>
+
+                <p>
+                    Bạn có đồng ý xoá bản ghi hiện tại không?
+                </p>
+
+                <div class="modal__footer">
+                    <button type="button" class="btn btn-secondary" onclick="cancelDel()">Huỷ</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmDel()">Đồng ý</button>
+                </div>
+
+                <a href="#" class="modal__close">&times;</a>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>s
+    <!-- <script src="js/scripts.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="js/datatables-simple-demo.js"></script>
+
+    <script>
+        // api url
+        const api_url = 
+            "http://localhost/laravel_api/public/api/vaccination_info";
+        // const api_url = "https://61e2e5533050a100176822eb.mockapi.io/user/user"
+        var idSelected = '';
+        // Defining async function
+        var dataUser = [];
+        async function getapi(url) {
+            $('.modal').hide();
+            // Storing response
+            let response = await fetch(url);
+            response = await response.json()
+            dataUser = response;
+            console.log(dataUser);
+            // if (response) {
+            //     hideloader();
+            // }
+            let tables = document.getElementById("datatablesSimple")
+            $('table tbody').empty();
+
+            for (let e of dataUser) {
+
+                tables.innerHTML +=
+                    `<tr>
+   
+                    <td>${e.vaccination_info_id}</td>
+                    <td>${e.vaccination_injection_1}</td>
+                    <td>${e.vaccination_injection_2}</td> 
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary editbtn" onclick="edit(event)">Edit</button>
+                            <button type="button" class="btn btn-primary"><a href="#demo-modal" id="delConfirm" onclick="del(event)">Delete</a></button>
+                        </div>
+                    </td>
+                </tr>`;
+
+            }
+
+
+        }
+        // Calling that async function
+        getapi(api_url);
+
+        //Function to define innerHTML for HTML table
+
+        //Show show
+        function showForm() {
+
+        }
+
+        /* Show form detail*/
+        $('#btnAdd').click(function (e) {
+            $('.background-form').show();
+            $('#formDetail').show();
+        });
+
+        /*Close form detail*/
+        $('.close-form').click(function (e) {
+            $('.background-form').hide();
+            $('#formDetail').hide();
+        });
+
+
+        /*Thêm mới*/
+        var obj = {}
+        var inputs = $('input[fieldName]');
+        $('.save').click(function (e) {
+            e.preventDefault()
+            $.each(inputs, function (index, input) {
+                var propertyName = $(this).attr('fieldName');
+                var value = $(this).val();
+                obj[propertyName] = value;
+                console.log(obj);
+            });
+            if (!idSelected) {
+                $.ajax({
+                    type: "POST",
+                    url: api_url,
+                    data: JSON.stringify(obj),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        console.log(response);
+                        getapi(api_url)
+                        $('.background-form').hide();
+                        $('#formDetail').hide();
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: "PUT",
+                    url: api_url + `/${idSelected}`,
+                    data: JSON.stringify(obj),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (response) {
+                        alert('Xác nhận cập nhật!')
+                        getapi(api_url)
+                        $('.background-form').hide();
+                        $('#formDetail').hide();
+                        idSelected = '';
+                    }
+                });
+            }
+        });
+
+        /*Show Popup comfirm Delete*/
+        function del(e) {
+            $('.modal').show();
+            idSelected = $(e.currentTarget).parent().parent().parent().siblings('#id').text();
+            console.log(idSelected);
+        }
+        /*Cancel Delete*/
+        function cancelDel() {
+            $('.modal').hide();
+            idSelected = '';
+        }
+        /*Confirm Delete*/
+        function confirmDel() {
+            $.ajax({
+                type: "DELETE",
+                url: api_url + `/${idSelected}`,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    $('.modal').hide();
+                    getapi(api_url)
+                    idSelected = '';
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+        /*Lấy theo ID*/
+        function edit(e) {
+            idSelected = $(e.currentTarget).parent().parent().siblings('#id').text();
+            $.ajax({
+                type: "GET",
+                url: api_url + `/${idSelected}`,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (response) {
+                    var inputs = $('input[fieldName]');
+                    $.each(inputs, function (index, input) {
+                        var propertyName = $(this).attr('fieldName');
+                        var value = response[propertyName];
+                        $(this).val(value);
+                        $('.background-form').show();
+                        $('#formDetail').show();
+                    });
+                    console.log(response);
+                }
+            });
+        }
+        
+        /*Tìm kiếm*/
+        function search(e){
+            var keyword = e.target.value;
+            if(keyword){
+            dataUser = dataUser.filter(function(dataUser){
+                return dataUser.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+            })
+            let tables = document.getElementById("datatablesSimple")
+            $('table tbody').empty();
+            for (let e of dataUser) {
+                tables.innerHTML +=
+                    `<tr>
+                    <td style="display:none" id="id">${e.user_id}</td>    
+                    <td>${e.name}</td>
+                    <td>${e.division}</td>
+                    <td>${e.role}</td> 
+                    <td>${e.phonenumber}</td>
+                    <td>Active</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary editbtn" onclick="edit(event)">Edit</button>
+                            <button type="button" class="btn btn-primary"><a href="#demo-modal" id="delConfirm" onclick="del(event)">Delete</a></button>
+                        </div>
+                    </td>
+                </tr>`;
+            }
+            }else{
+                getapi(api_url)
+            }
+            console.log(keyword);
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -153,6 +153,7 @@ public class HomeScreen extends AppCompatActivity {
         Intent intent_logout = new Intent(HomeScreen.this, LoginForm.class);
         startActivity(intent_logout);
         finish();
+
     }
 
     public void setting(View view) {
@@ -178,7 +179,7 @@ public class HomeScreen extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Log.v("ID 1", message);
+
             return null;
         }
 
@@ -186,9 +187,21 @@ public class HomeScreen extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             for (Vaccination_info vaccination_info_get_dose : vaccinationInfoList){
                 if(message.equals(vaccination_info_get_dose.getVaccinationInfoId())){
-                    Log.v("ID 2", vaccination_info_get_dose.getVaccinationInfoId());
+
                     str_dose_1_id = vaccination_info_get_dose.getVaccinationInjection1();
-                    str_dose_2_id = vaccination_info_get_dose.getVaccinationInjection2();
+
+
+                    if  (vaccination_info_get_dose.getVaccinationInjection2() == null){
+
+                        str_dose_2_id = "None Vaccine";
+
+                    } else {
+                        str_dose_2_id = vaccination_info_get_dose.getVaccinationInjection2();
+
+                    }
+
+                    Log.v("ID 1", String.valueOf(vaccination_info_get_dose.getVaccinationInjection2()));
+
 
                 }
 

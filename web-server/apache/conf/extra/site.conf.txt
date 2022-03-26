@@ -1,0 +1,7 @@
+<VirtualHost 192.168.8.116:80>
+  ServerAdmin web-admin.example.com
+  DocumentRoot "F:\project2\htdocs\web-admin\dist"
+  ServerName localhost
+  ErrorLog "logs/dummy-host2.example.com-error.log"
+  CustomLog "logs/dummy-host2.example.com-access.log" common
+</VirtualHost>
